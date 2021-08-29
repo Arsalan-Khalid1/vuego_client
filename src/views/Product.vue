@@ -84,3 +84,14 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+
+.image img{
+        height: 50rem;
+    width: 100%;
+    -o-object-fit: cover !important;
+    object-fit: cover !important;
+}
+
+</style>
