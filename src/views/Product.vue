@@ -1,5 +1,5 @@
 <template>
-    <div v-if="Object.keys(product).length > 0" class="page-product">
+    <div class="page-product">
         <div class="columns is-multiline">
         <div class="column is-9">
             <figure class="image mb-6">
@@ -22,9 +22,6 @@
         </div>
         </div>
     </div>
-    <div v-else>
-        <h1>Loading</h1>
-    </div>
 </template>
 
 <script>
@@ -42,15 +39,19 @@ export default {
 
     methods: {
         async getProduct() {
+            this.$store.commit("setIsLoading", true);
             const category_slug = this.$route?.params?.category_slug;
             const product_slug = this.$route?.params?.product_slug;
             try {
                 const response = await Axios.get(`/api/v1/product/${category_slug}/${product_slug}`);
                 this.product = response?.data;
+                this.$store.commit("setIsLoading", false);
+                document.title = this.product.name + ' | Vango'
                 return response
             }
             catch (err) {
                 console.log("error details ", err);
+                this.$store.commit("setIsLoading", false);
                 return err
             }
         },
