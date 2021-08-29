@@ -1,5 +1,6 @@
 <template>
     <div v-if="Object.keys(product).length > 0" class="page-product">
+        <div class="columns is-multiline">
         <div class="column is-9">
             <figure class="image mb-6">
                 <img v-bind:src="product.get_image" alt="">
@@ -18,6 +19,7 @@
                     <a href="" class="button is-dark">Add to Cart</a>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     <div v-else>
