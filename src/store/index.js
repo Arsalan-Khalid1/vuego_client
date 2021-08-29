@@ -22,12 +22,13 @@ export default createStore({
     },
 
     addToCart(state, item) {
+      console.log("clicked with product");
       const existingItem = state.cart.items.filter(
         (i) => i.product.id === item.product.id
       );
       if (existingItem.length) {
         existingItem[0].quantity =
-          parseInt(existingItem[o].quantity) + parseInt(item.quantity);
+          parseInt(existingItem[0].quantity) + parseInt(item.quantity);
       } else {
         state.cart.items.push(item);
       }
